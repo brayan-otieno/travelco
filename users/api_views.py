@@ -11,7 +11,6 @@ class UserSignupAPIView(generics.CreateAPIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
 
-        # generate JWT tokens
         refresh = RefreshToken.for_user(user)
         return Response({
             "user_id": user.id,
